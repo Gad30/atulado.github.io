@@ -14,7 +14,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             overflow-y: auto;
             scroll-behavior: smooth;
         }
@@ -26,13 +26,14 @@
             align-items: center;
             justify-content: center;
             padding: 50px 20px;
+            min-height: 100vh;
             width: 100%;
-            height: auto;
+            box-sizing: border-box;
         }
 
         h1 {
             font-size: 3rem;
-            margin: 20px 0;
+            margin-top: 20px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
@@ -43,7 +44,7 @@
 
         .countdown {
             display: flex;
-            gap: 10px;
+            gap: 20px;
             margin-top: 20px;
             justify-content: center;
             flex-wrap: wrap;
@@ -52,14 +53,13 @@
         .countdown div {
             background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            padding: 15px;
+            padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            min-width: 80px;
         }
 
         .countdown div span {
             display: block;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #cc0000;
         }
 
@@ -68,7 +68,7 @@
             color: white;
             border: none;
             padding: 15px 30px;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             border-radius: 50px;
             margin-top: 20px;
@@ -83,6 +83,10 @@
             transform: scale(1.05);
         }
 
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
         .participa {
             margin-top: 40px;
         }
@@ -91,8 +95,8 @@
             display: inline-block;
             background-color: #cc0000;
             color: white;
-            padding: 12px 25px;
-            font-size: 1rem;
+            padding: 15px 30px;
+            font-size: 1.2rem;
             text-decoration: none;
             border-radius: 5px;
             margin-top: 10px;
@@ -106,42 +110,38 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.9);
             text-align: center;
-            padding: 10px;
-            font-size: 1rem;
+            padding: 15px;
+            font-size: 1.2rem;
             color: #800000;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 20px 20px 0 0;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .countdown div {
-                padding: 10px;
-            }
-            .play-button {
-                font-size: 1rem;
-                padding: 10px 20px;
-            }
         }
     </style>
 </head>
 <body>
     <h1>Flow Profession</h1>
-    <h2>De parte de Flow Profession</h2>
     <div class="heart-background">
+        <h2>De parte de Flow Profession</h2>
         <h2>A Tu Lado</h2>
         <p>A Tu Lado siempre quiero estar, my love.</p>
 
         <div class="countdown">
-            <div><span id="days">0</span> Días</div>
-            <div><span id="hours">0</span> Horas</div>
-            <div><span id="minutes">0</span> Minutos</div>
-            <div><span id="seconds">0</span> Segundos</div>
+            <div>
+                <span id="days">0</span>
+                Días
+            </div>
+            <div>
+                <span id="hours">0</span>
+                Horas
+            </div>
+            <div>
+                <span id="minutes">0</span>
+                Minutos
+            </div>
+            <div>
+                <span id="seconds">0</span>
+                Segundos
+            </div>
         </div>
 
         <button class="play-button" onclick="playPreview()">Reproducir Preview</button>
@@ -170,22 +170,18 @@
             const now = new Date().getTime();
             const distance = targetDate - now;
 
-            if (distance < 0) {
-                document.getElementById('days').textContent = "0";
-                document.getElementById('hours').textContent = "0";
-                document.getElementById('minutes').textContent = "0";
-                document.getElementById('seconds').textContent = "0";
-                return;
+            if (distance > 0) {
+                document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
             }
-
-            document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
         }
-
-        updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        function playPreview() {
+            document.getElementById('preview-audio').play();
+        }
     </script>
 </body>
 </html>
