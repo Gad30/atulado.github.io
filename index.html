@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flow Profession</title>
+    <title>A Tu Lado</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -28,6 +28,12 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
+        h2.subtitle {
+            font-size: 2.5rem;
+            color: #800000;
+            margin-top: 10px;
+        }
+
         .heart-background {
             flex: 1;
             display: flex;
@@ -37,11 +43,6 @@
             padding: 50px 20px;
             height: 100vh;
             width: 100%;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
         }
 
         .countdown {
@@ -123,6 +124,8 @@
 </head>
 <body>
     <h1 class="title">Flow Profession</h1>
+    <h2 class="subtitle">De parte de Flow Profession</h2>
+    
     <div class="heart-background">
         <h2>A Tu Lado</h2>
         <p>A Tu Lado siempre quiero estar, my love.</p>
@@ -167,28 +170,10 @@
     </footer>
 
     <script>
-        function updateCountdown() {
-            const targetDate = new Date('April 7, 2025 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
+        function playPreview() {
+            const audio = document.getElementById('preview-audio');
+            audio.play();
         }
-        setInterval(updateCountdown, 1000);
-    </script>
-</body>
-</html>
-
-
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
