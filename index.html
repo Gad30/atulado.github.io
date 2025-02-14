@@ -9,48 +9,21 @@
         body {
             margin: 0;
             font-family: 'Georgia', serif;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background: linear-gradient(to bottom, #ffcccc, #ffe6e6);
-            overflow: hidden;
             color: #b30000;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .heart-background {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-        }
-
-        .heart-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath fill="%23ff6699" d="M50 94.5S4.8 56.6 4.8 34.7C4.8 17.7 18.3 4 35 4c8.7 0 14.9 5 18.8 10.5C56.7 9 62.9 4 71.6 4 88.3 4 101.8 17.7 101.8 34.7c0 21.9-45.2 59.8-45.2 59.8L50 94.5z"/%3E%3C/svg%3E') repeat;
-            background-size: 200px;
-            opacity: 0.3;
-            animation: move-hearts 10s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes move-hearts {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 1000px;
-            }
+            padding: 50px 20px;
         }
 
         h1 {
@@ -62,11 +35,6 @@
         h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.5rem;
-            margin: 10px 0;
         }
 
         .countdown {
@@ -89,31 +57,77 @@
             color: #cc0000;
         }
 
-        footer {
-            margin-top: 30px;
-            font-size: 1rem;
-            color: #800000;
-        }
-
-        /* Audio control (hidden from user) */
-        audio {
-            display: none;
-        }
-
-        /* Button Style */
         .play-button {
-            background-color: #ff6699;
+            background: linear-gradient(135deg, #ff6699, #ff3366);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 1.5rem;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 50px;
             margin-top: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(255, 51, 102, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
         .play-button:hover {
-            background-color: #cc3366;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
+            transform: scale(1.05);
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
+        .play-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateY(-50%);
+            transition: all 0.4s ease-in-out;
+        }
+
+        .play-button:hover::before {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .participa {
+            margin-top: 40px;
+        }
+
+        .participa a {
+            display: inline-block;
+            background-color: #cc0000;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .participa a:hover {
+            background-color: #990000;
+        }
+
+        footer {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            color: #800000;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 20px 20px 0 0;
         }
     </style>
 </head>
@@ -126,35 +140,41 @@
         <div class="countdown">
             <div>
                 <span id="days">0</span>
-                Days
+                Días
             </div>
             <div>
                 <span id="hours">0</span>
-                Hours
+                Horas
             </div>
             <div>
                 <span id="minutes">0</span>
-                Minutes
+                Minutos
             </div>
             <div>
                 <span id="seconds">0</span>
-                Seconds
+                Segundos
             </div>
         </div>
 
-        <footer>
-            Creado con amor por GioGad Beats ❤️
-        </footer>
-
-        <!-- Reproducir Preview Button -->
         <button class="play-button" onclick="playPreview()">Reproducir Preview</button>
+
+        <div class="participa">
+            <h2>Participa Ya</h2>
+            <p>¿Quieres compartir tu historia de amor?</p>
+            <p>Envía tus datos y participa en este hermoso proyecto.</p>
+            <a href="https://forms.gle/mzH8HZWurMmG6DmE6" target="_blank">Enviar Datos</a>
+        </div>
     </div>
 
-    <!-- Hidden background audio -->
     <audio id="preview-audio">
         <source src="Preview%20web.mp3" type="audio/mpeg">
         Tu navegador no soporta la reproducción de audio.
     </audio>
+
+    <footer>
+        <p>© 2025 GioGad Beats | Flow Profession. Todos los derechos reservados.</p>
+        <p>Hecho con ❤️ para todos los que creen en el amor.</p>
+    </footer>
 
     <script>
         function updateCountdown() {
@@ -171,20 +191,8 @@
             document.getElementById('hours').textContent = hours;
             document.getElementById('minutes').textContent = minutes;
             document.getElementById('seconds').textContent = seconds;
-
-            if (distance < 0) {
-                clearInterval(interval);
-                document.body.innerHTML = '<h1>¡Ha llegado el día!! ❤️</h1>';
-            }
         }
-
-        const interval = setInterval(updateCountdown, 1000);
-
-        // Función para reproducir el preview cuando se hace clic en el botón
-        function playPreview() {
-            const audio = document.getElementById('preview-audio');
-            audio.play();
-        }
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
