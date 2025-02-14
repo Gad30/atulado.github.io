@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Tu Lado</title>
+    <title>Countdown to February 24th</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -95,8 +95,25 @@
             color: #800000;
         }
 
+        /* Audio control (hidden from user) */
         audio {
             display: none;
+        }
+
+        /* Button Style */
+        .play-button {
+            background-color: #ff6699;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .play-button:hover {
+            background-color: #cc3366;
         }
     </style>
 </head>
@@ -128,10 +145,14 @@
         <footer>
             Creado con amor por GioGad Beats ❤️
         </footer>
+
+        <!-- Reproducir Preview Button -->
+        <button class="play-button" onclick="playPreview()">Reproducir Preview</button>
     </div>
 
-    <audio id="background-audio" loop autoplay>
-        <source src="Preview web.mp3" type="audio/mpeg">
+    <!-- Hidden background audio -->
+    <audio id="preview-audio">
+        <source src="Preview%20web.mp3" type="audio/mpeg">
         Tu navegador no soporta la reproducción de audio.
     </audio>
 
@@ -158,6 +179,12 @@
         }
 
         const interval = setInterval(updateCountdown, 1000);
+
+        // Función para reproducir el preview cuando se hace clic en el botón
+        function playPreview() {
+            const audio = document.getElementById('preview-audio');
+            audio.play();
+        }
     </script>
 </body>
 </html>
