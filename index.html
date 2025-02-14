@@ -116,30 +116,6 @@
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 20px 20px 0 0;
         }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            .countdown div {
-                padding: 15px;
-            }
-
-            .play-button {
-                font-size: 1.2rem;
-                padding: 10px 20px;
-            }
-
-            .participa a {
-                font-size: 1rem;
-                padding: 10px 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -174,7 +150,7 @@
             <h2>Participa Ya</h2>
             <p>¿Quieres compartir tu historia de amor?</p>
             <p>Envía tus datos y participa en este hermoso proyecto.</p>
-            <a href="https://forms.gle/mzH8HZWurMmG6DmE6" target="_blank">Enviar Datos</a>
+            <a href="https://forms.gle/tulink" target="_blank">Enviar Datos</a>
         </div>
     </div>
 
@@ -187,5 +163,27 @@
         <p>© 2025 GioGad Beats | Flow Profession. Todos los derechos reservados.</p>
         <p>Hecho con ❤️ para todos los que creen en el amor.</p>
     </footer>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('April 7, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance > 0) {
+                document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        function playPreview() {
+            const audio = document.getElementById('preview-audio');
+            audio.play().catch(error => console.error("Error al reproducir audio:", error));
+        }
+    </script>
 </body>
 </html>
