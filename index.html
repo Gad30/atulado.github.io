@@ -14,7 +14,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            height: 100vh;
             overflow-y: auto;
             scroll-behavior: smooth;
         }
@@ -26,7 +26,8 @@
             align-items: center;
             justify-content: center;
             padding: 50px 20px;
-            min-height: 100vh;
+            height: 100vh;
+            width: 100%;
         }
 
         h1 {
@@ -84,23 +85,6 @@
 
         .play-button:active {
             transform: scale(0.95);
-        }
-
-        .play-button::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
-            transform: translateY(-50%);
-            transition: all 0.4s ease-in-out;
-        }
-
-        .play-button:hover::before {
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
 
         .participa {
@@ -195,6 +179,11 @@
             document.getElementById('minutes').textContent = minutes;
             document.getElementById('seconds').textContent = seconds;
         }
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
+
         setInterval(updateCountdown, 1000);
     </script>
 </body>
